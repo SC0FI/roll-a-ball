@@ -30,6 +30,8 @@ public class Rotator : MonoBehaviour
         {
             ParticleSystem particle = asd.GetComponentInChildren<ParticleSystem>();
             particle.Play();
+            BoxCollider collider = asd.GetComponent<BoxCollider>();
+            collider.enabled = false;
             MeshRenderer renderer = asd.GetComponent<MeshRenderer>();
             renderer.enabled = false;
 
