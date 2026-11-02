@@ -17,9 +17,12 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     private bool dashRequested;
+    [SerializeField]
+    private float dashCooldown = 5.0f;
+    private float nextDash;
     private bool onGround;
-
-    private int coins;
+    [SerializeField]
+    private Image shift;
 
     [SerializeField]
     [Range(0.0f, 10.0f)]
@@ -62,12 +65,24 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = Vector3.ClampMagnitude(right * movementX + forward * movementY, 1f);
         rb.AddForce(movement * speed);
 
+        if(Time.time > nextDash)
+        {
+            shift.color = Color.green;
+        }
+
         if (dashRequested)
         {
+            if (Time.time > nextDash) { 
             // Dash toward the input, or camera-forward when standing still.
-            Vector3 dashDirection = movement.sqrMagnitude > 0f ? movement.normalized : forward;
-            rb.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
-            dashRequested = false;
+                Vector3 dashDirection = movement.sqrMagnitude > 0f ? movement.normalized : forward;
+                rb.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
+                dashRequested = false;
+                nextDash = Time.time + dashCooldown;
+                shift.color = Color.red;
+            } else
+            {
+                dashRequested = false; // stops from dashing double dashing on accident
+            }
         }
     }
 
