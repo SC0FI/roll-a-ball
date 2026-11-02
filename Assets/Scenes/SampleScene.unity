@@ -1741,6 +1741,8 @@ MonoBehaviour:
   coinsText: {fileID: 13645876}
   winText: {fileID: 210493685}
   button: {fileID: 2145237828}
+  enemyMovement: {fileID: 377310410}
+  playerController: {fileID: 634012060}
 --- !u!4 &660072470
 Transform:
   m_ObjectHideFlags: 0
