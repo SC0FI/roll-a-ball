@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,7 +16,13 @@ public class GameLogic : MonoBehaviour
     private TextMeshProUGUI winText;
     [SerializeField]
     private Button button;
-    
+    [SerializeField]
+    private EnemyMovement enemyMovement;
+    [SerializeField]
+    private PlayerController playerController;
+
+    private bool paused = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -63,5 +70,21 @@ public class GameLogic : MonoBehaviour
     private void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Pause()
+    {
+        if (paused) {
+            //enemyNavMesh.enabled = true;
+            enemyMovement.Pause(false);
+            playerController.Pause(false);
+            paused = false;
+        } else
+        {
+            //enemyNavMesh.enabled = false;
+            enemyMovement.Pause(true);
+            playerController.Pause(true);
+            paused = true;
+        }
     }
 }

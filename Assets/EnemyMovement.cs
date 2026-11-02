@@ -22,4 +22,15 @@ public class EnemyMovement : MonoBehaviour
             navMeshAgent.SetDestination(player.position);
         }
     }
+
+    public void Pause(bool pause)
+    {
+        if (pause)
+        {
+            navMeshAgent.enabled = false;
+        } else
+        {
+            navMeshAgent.enabled = true;
+        }
+    }
 }
