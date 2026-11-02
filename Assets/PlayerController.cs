@@ -141,4 +141,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Pause(bool pause)
+    {
+        if (pause)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePosition;
+        } else
+        {
+            rb.constraints = RigidbodyConstraints.None;
+        }
+    }
+
+    void OnPause()
+    {
+        gameLogic.Pause();
+    }
+
 }
