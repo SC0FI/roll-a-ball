@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameLogic gameLogic;
 
+    float timeDiff;
+
     private InputValue movementValue;
 
     private float movementX;
@@ -146,9 +148,13 @@ public class PlayerController : MonoBehaviour
         if (pause)
         {
             rb.constraints = RigidbodyConstraints.FreezePosition;
+            timeDiff = nextDash - Time.time;
+            nextDash = 500000;
+            print("Currtime = " + Time.time + "timeDiff = " +  timeDiff);
         } else
         {
             rb.constraints = RigidbodyConstraints.None;
+            nextDash = Time.time + timeDiff;
         }
     }
 
