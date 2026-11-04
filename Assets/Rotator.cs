@@ -16,7 +16,8 @@ public class Rotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime * speed);
+        //transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime * speed);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,7 +42,7 @@ public class Rotator : MonoBehaviour
 
     private IEnumerator DisableAfterDelay(GameObject pickup)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(7f);
 
         if (pickup != null)
             pickup.SetActive(false);

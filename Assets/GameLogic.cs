@@ -23,6 +23,9 @@ public class GameLogic : MonoBehaviour
 
     private bool paused = false;
 
+    [SerializeField]
+    private GameObject pauseMenu;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -75,15 +78,17 @@ public class GameLogic : MonoBehaviour
     public void Pause()
     {
         if (paused) {
-            //enemyNavMesh.enabled = true;
+            //UNPAUSE
             enemyMovement.Pause(false);
             playerController.Pause(false);
+            pauseMenu.gameObject.SetActive(false);
             paused = false;
         } else
         {
-            //enemyNavMesh.enabled = false;
+            //PAUSE
             enemyMovement.Pause(true);
             playerController.Pause(true);
+            pauseMenu.gameObject.SetActive(true);
             paused = true;
         }
     }
