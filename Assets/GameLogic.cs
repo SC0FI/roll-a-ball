@@ -92,4 +92,9 @@ public class GameLogic : MonoBehaviour
             paused = true;
         }
     }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
